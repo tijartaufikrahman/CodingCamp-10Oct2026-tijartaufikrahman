@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Bar Controls -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-title">Life Dashboard</span>
+      </div>
+      <div class="top-actions">
+        <!-- Challenge 1: Theme Toggle (Light/Dark Mode) -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+          <span id="themeIcon" class="theme-icon">🌙</span>
+          <span id="themeText" class="theme-text">Dark Mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-grid">
+      <!-- Greeting & Clock Card -->
+      <section class="card greeting-card" aria-label="Current Time and Greeting">
+        <div class="clock-display" id="clockDisplay">00:00:00</div>
+        <div class="date-display" id="dateDisplay">Loading date...</div>
+        <!-- Challenge 2: Custom Name in Greeting -->
+        <div class="greeting-wrapper">
+          <h1 class="greeting-heading">
+            <span id="greetingPrefix">Good Morning</span>, 
+            <span id="userNameDisplay" class="editable-name" title="Click to change your name">User</span>
+            <button id="editNameBtn" class="btn-icon" title="Edit your name" aria-label="Edit your name">✏️</button>
+          </h1>
+        </div>
+      </section>
+
+      <!-- Middle Row: Focus Timer and Tasks -->
+      <div class="middle-grid">
+        <!-- Focus Timer Card -->
+        <section class="card timer-card" aria-label="Focus Timer">
+          <div class="card-header">
+            <h2>Focus Timer</h2>
+            <!-- Challenge 3: Change Pomodoro Time -->
+            <div class="timer-presets" role="group" aria-label="Timer Duration Presets">
+              <button class="preset-btn active" data-minutes="25" type="button">25m</button>
+              <button class="preset-btn" data-minutes="15" type="button">15m</button>
+              <button class="preset-btn" data-minutes="5" type="button">5m</button>
+              <button id="customTimerBtn" class="preset-btn" type="button">Custom</button>
+            </div>
+          </div>
+
+          <div class="timer-display-wrap">
+            <div class="timer-display" id="timerDisplay">25:00</div>
+            <div class="timer-status" id="timerStatus">Ready</div>
+          </div>
+
+          <div class="timer-controls">
+            <button id="timerStartBtn" class="btn btn-primary" type="button">Start</button>
+            <button id="timerStopBtn" class="btn btn-secondary" type="button">Stop</button>
+            <button id="timerResetBtn" class="btn btn-secondary" type="button">Reset</button>
+          </div>
+        </section>
+
+        <!-- Tasks Card -->
+        <section class="card tasks-card" aria-label="To-Do List">
+          <div class="card-header">
+            <h2>Tasks</h2>
+            <!-- Challenge 5: Sort Tasks -->
+            <div class="task-sort-wrapper">
+              <label for="taskSortSelect" class="sr-only">Sort Tasks</label>
+              <select id="taskSortSelect" class="task-sort-select" title="Sort tasks">
+                <option value="default">Sort: Default</option>
+                <option value="az">Sort: A to Z</option>
+                <option value="za">Sort: Z to A</option>
+                <option value="active">Sort: Incomplete First</option>
+                <option value="completed">Sort: Completed First</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Add Task Form -->
+          <form id="taskForm" class="task-form">
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="taskInput" 
+                class="form-input" 
+                placeholder="Add a new task..." 
+                autocomplete="off"
+                aria-label="New task input"
+                required
+              >
+              <button type="submit" id="addTaskBtn" class="btn btn-primary">Add</button>
+            </div>
+            <!-- Challenge 4: Prevent Duplicate Tasks Notification -->
+            <div id="taskErrorMsg" class="feedback-msg error" role="alert" aria-live="polite"></div>
+          </form>
+
+          <!-- Task List -->
+          <ul id="taskList" class="task-list" aria-label="Task items">
+            <!-- Dynamic task items injected via JS -->
+          </ul>
+        </section>
+      </div>
+
+      <!-- Quick Links Card -->
+      <section class="card quick-links-card" aria-label="Quick Links">
+        <div class="card-header">
+          <h2>Quick Links</h2>
+        </div>
+
+        <!-- Add Link Form -->
+        <form id="quickLinkForm" class="link-form">
+          <div class="link-inputs">
+            <input 
+              type="text" 
+              id="linkNameInput" 
+              class="form-input" 
+              placeholder="Link name (e.g. GitHub)" 
+              autocomplete="off"
+              aria-label="Link name"
+              required
+            >
+            <input 
+              type="text" 
+              id="linkUrlInput" 
+              class="form-input" 
+              placeholder="URL (e.g. https://github.com)" 
+              autocomplete="off"
+              aria-label="Link URL"
+              required
+            >
+            <button type="submit" id="addLinkBtn" class="btn btn-primary">Add Link</button>
+          </div>
+          <div id="linkErrorMsg" class="feedback-msg error" role="alert" aria-live="polite"></div>
+        </form>
+
+        <!-- Quick Links List -->
+        <div id="quickLinksContainer" class="quick-links-container">
+          <!-- Dynamic links injected via JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
